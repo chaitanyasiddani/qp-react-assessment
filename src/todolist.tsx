@@ -78,19 +78,22 @@ const Todolist = () => {
 
     return (
         <>
-            <div>
+            <div className="addForm">
                 <input type="text" data-testid="inputTxt" onChange={(e) => changeHandler(e)} value={input} />
                 <button name="addButton" type="button" onClick={addClickHandler}>Add</button>
+            </div>
                 {
                     list.map(item =>
-                        <div key={item.id} data-testid={item.id} >
+                        <div className="todoItem" key={item.id} data-testid={item.id} >
+                            <div className="item">
                             <input data-testid={"checkbox" + item.id} type="checkbox" defaultChecked={item.completed} onChange={(e) => checkChangeHandler(e, item.id)} />
                             <span data-testid={"title" + item.id}>{item.title}</span>
-                            <br></br>
-                            {item.completed.toString()}
+                            </div>
+                            
+                            <div className="status">{item.completed ? 'Complete' : 'Incomplete'}</div>
                         </div>)
                 }
-            </div>
+            
         </>
     )
 }
